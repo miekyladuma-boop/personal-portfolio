@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nycole - Portfolio</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins', sans-serif;
+}
+
+/* BACKGROUND */
+body{
+    background:#eaf4ff;
+    color:#333;
+    overflow-x:hidden;
+}
+
+/* HIDE RADIO */
+input{
+    display:none;
+}
+
+/* NAV */
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    background:#cfe8ff;
+    display:flex;
+    justify-content:center;
+    padding:15px 0;
+    z-index:1000;
+    box-shadow:0 2px 10px rgba(0,0,0,0.1);
+    backdrop-filter:blur(10px);
+}
+
+nav label{
+    margin:0 15px;
+    cursor:pointer;
+    font-weight:600;
+    color:#1f4e79;
+    transition:0.3s;
+}
+
+nav label:hover{
+    color:#4aa3ff;
+    transform:scale(1.1);
+}
+
+/* PAGES */
+.page{
+    display:none;
+    height:100vh;
+    padding:100px 10% 50px;
+    animation:fadePage 0.7s ease;
+}
+
+@keyframes fadePage{
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* SHOW ACTIVE PAGE */
+#home:checked ~ .content #homePage,
+#about:checked ~ .content #aboutPage,
+#skills:checked ~ .content #skillsPage,
+#blog:checked ~ .content #blogPage,
+#contact:checked ~ .content #contactPage{
+    display:block;
+}
+
+/* HOME */
+.home-container{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:40px;
+    flex-wrap:wrap;
+}
+
+.home-img{
+    flex:1;
+    display:flex;
+    justify-content:center;
+}
+
+.home-img img{
+    width:260px;
+    height:260px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid #b3dbff;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    animation:floatImage 3s ease-in-out infinite;
+    transition:0.4s;
+}
+
+.home-img img:hover{
+    transform:scale(1.05);
+    box-shadow:0 0 30px rgba(30,144,255,0.5);
+}
+
+@keyframes floatImage{
+    0%{
+        transform:translateY(0px);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
+    100%{
+        transform:translateY(0px);
+    }
+}
+
+.home-text{
+    flex:1;
+}
+
+.home-text h1{
+    font-size:42px;
+}
+
+.home-text h1 span{
+    color:#1e90ff;
+    font-style:italic;
+}
+
+.home-text p{
+    margin-top:15px;
+    color:#555;
+    line-height:1.6;
+}
+
+/* ABOUT */
+.about-container{
+    display:flex;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.about-box{
+    flex:1;
+    background:#dff0ff;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.05);
+    transition:0.4s;
+}
+
+.about-box:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(30,144,255,0.3);
+}
+
+/* SKILLS */
+.skills-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+    gap:20px;
+}
+
+.skill-card{
+    background:#d6ecff;
+    padding:25px;
+    border-radius:15px;
+    text-align:center;
+    transition:0.3s;
+}
+
+.skill-card:hover{
+    transform:translateY(-10px) scale(1.03);
+    background:#c2e2ff;
+    box-shadow:0 0 20px rgba(30,144,255,0.3);
+}
+
+/* BLOG */
+.blog-title{
+    font-size:28px;
+    margin-bottom:25px;
+    color:#1f4e79;
+}
+
+.blog-title span{
+    color:#1e90ff;
+}
+
+.blog-container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+    justify-content:center;
+    max-width:1000px;
+}
+
+.blog-media{
+    position:relative;
+    flex:1;
+    min-width:300px;
+}
+
+.blog-media iframe{
+    width:100%;
+    height:300px;
+    object-fit:contain;
+    border-radius:15px;
+    transition:0.4s;
+}
+
+.blog-media iframe:hover{
+    transform:scale(1.02);
+}
+
+.blog-content{
+    flex:1;
+    min-width:300px;
+    background:#dff0ff;
+    padding:20px;
+    border-radius:15px;
+    box-shadow:0 10px 20px rgba(0,0,0,0.1);
+    transition:0.4s;
+}
+
+.blog-content:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(30,144,255,0.3);
+}
+
+/* CONTACT */
+#contactPage{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    min-height:100vh;
+    padding-top:70px;
+}
+
+.contact-title{
+    font-size:30px;
+    margin-bottom:30px;
+    color:#1f4e79;
+}
+
+.contact-title span{
+    color:#1e90ff;
+}
+
+.contact-list{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    width:100%;
+    max-width:500px;
+}
+
+.contact-item{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    background:#dff0ff;
+    padding:18px 20px;
+    border-radius:12px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+    transition:0.3s;
+}
+
+.contact-item:hover{
+    transform:translateX(8px);
+    background:#cfe8ff;
+    box-shadow:0 0 20px rgba(30,144,255,0.3);
+}
+
+.line{
+    width:5px;
+    height:45px;
+    background:#1e90ff;
+    border-radius:5px;
+}
+
+.contact-item h3{
+    margin-bottom:5px;
+}
+
+.contact-item p{
+    font-size:14px;
+    color:#555;
+}
+</style>
+</head>
+
+<body>
+
+<input type="radio" name="tab" id="home" checked>
+<input type="radio" name="tab" id="about">
+<input type="radio" name="tab" id="skills">
+<input type="radio" name="tab" id="blog">
+<input type="radio" name="tab" id="contact">
+
+<nav>
+    <label for="home">Home</label>
+    <label for="about">About</label>
+    <label for="skills">Skills</label>
+    <label for="blog">Blog</label>
+    <label for="contact">Contact</label>
+</nav>
+
+<div class="content">
+
+<section class="page" id="homePage">
+
+    <div class="home-container">
+
+        <div class="home-img">
+            <img src="KYLA.jpg" alt="Profile">
+        </div>
+
+        <div class="home-text">
+
+            <h1>
+                Hello. I'm <span>Miekyla Nycole</span>
+            </h1>
+
+            <p>
+                I’m a 19-year-old Computer Science student from Pagbilao, Quezon. I’m passionate about learning technology, improving my skills, and growing through new experiences in both academics and life.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="page" id="aboutPage">
+
+    <div class="about-container">
+
+        <div class="about-box">
+
+            <h2>About Me</h2>
+
+            <p>
+                I’m a Computer Science student who is passionate about learning technology and exploring how systems and software work. I am eager to improve my skills in programming, problem-solving, and digital tools, while continuously gaining new knowledge that can help me grow both academically and professionally.
+            </p>
+
+            <h2 style="margin-top:15px;">Information</h2>
+
+            <p>Address: Pagbilao, Quezon</p>
+            <p>Age: 19</p>
+            <p>Birthday: January 8, 2007</p>
+            <p>Religion: Roman Catholic</p>
+
+        </div>
+
+        <div class="about-box">
+
+            <h2>Education</h2>
+
+            <p><strong>Elementary</strong></p>
+            <p><strong>Binahaan Integrated School (2018)</strong></p>
+            <p>Brgy. Binahaan, Pagbilao, Quezon</p>
+
+            <p style="margin-top:10px;"><strong>Junior High School</strong></p>
+            <p><strong>Pagbilao Academy, Inc. (2023)</strong></p>
+            <p>Paterno St., Brgy. Sta Catalina, Pagbilao, Quezon</p>
+
+            <p style="margin-top:10px;"><strong>Senior High</strong></p>
+            <p><strong>St. Anne College Lucena, Inc. (2025)</strong></p>
+            <p>Diversion Road, Brgy. Gulang Gulang, Lucena City</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="page" id="skillsPage">
+
+    <div class="skills-container">
+
+        <div class="skill-card">
+            <h3>Computer Literate</h3>
+            <p>Proficient in using computers for daily tasks, including navigating the internet, utilizing basic software applications, and using digital tools for communication and productivity.</p>
+        </div>
+
+        <div class="skill-card">
+            <h3>Flexible</h3>
+            <p>Can quickly adapt to new situations, changes, or tasks while staying productive and maintaining a positive attitude.</p>
+        </div>
+
+        <div class="skill-card">
+            <h3>Good Communicator</h3>
+            <p>Can express ideas clearly—both verbally and in writing—and can listen effectively to understand instructions and collaborate well with others.</p>
+        </div>
+
+        <div class="skill-card">
+            <h3>Team Collaboration</h3>
+            <p>Works well with different types of people, contributes to group tasks, and supports team goals to ensure smooth and successful outcomes.</p>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="page" id="blogPage">
+
+    <h1 class="blog-title">Blog & <span>Insights</span></h1>
+
+    <div class="blog-container">
+
+        <div class="blog-media">
+
+            <iframe 
+                src="https://drive.google.com/file/d/1wKEwcojosHJdzM1WxNDLfzj6FPZfRdM7/preview"
+                allow="autoplay"
+                allowfullscreen>
+            </iframe>
+
+        </div>
+
+        <div class="blog-content">
+
+            <h2>Inside My World: A Personal Blog.</h2>
+
+            <p>
+                This is a personal compilation video featuring moments from my travels, bonding with friends & family, hobbies, and everyday life.
+                It also shows my growth in learning to live without pressure, appreciating every moment, and valuing a more private life where not everything needs to be seen or known by others.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="page" id="contactPage">
+
+    <h1 class="contact-title">Contact <span>Me</span></h1>
+
+    <div class="contact-list">
+
+        <div class="contact-item">
+
+            <div class="line"></div>
+
+            <div>
+                <h3>Email</h3>
+                <p>miekyladuma@email.com</p>
+            </div>
+
+        </div>
+
+        <div class="contact-item">
+
+            <div class="line"></div>
+
+            <div>
+                <h3>Phone</h3>
+                <p>09455761928</p>
+            </div>
+
+        </div>
+
+        <div class="contact-item">
+
+            <div class="line"></div>
+
+            <div>
+                <h3>Instagram</h3>
+                <p>@nyc.013</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+<script>
+
+/* ACTIVE NAV COLOR */
+const labels = document.querySelectorAll("nav label");
+
+labels.forEach(label => {
+
+    label.addEventListener("click", () => {
+
+        labels.forEach(l => {
+            l.style.color = "#1f4e79";
+        });
+
+        label.style.color = "#1e90ff";
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>
